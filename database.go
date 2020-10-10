@@ -17,7 +17,7 @@ import (
 func CleanupTestDb(db *sqlx.DB) error {
 	var tables []string
 
-	err := db.Select(&tables, `SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND  schemaname != 'information_schema'`)
+	err := db.Select(&tables, `SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND  schemaname != 'information_schema'`)
 	if err != nil {
 		return err
 	}
